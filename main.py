@@ -1,16 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
+from indeed import extract_indeed_pages
 
-worknet_result = requests.get("https://www.work.go.kr/empInfo/empInfoSrch/list/dtlEmpSrchList.do?&resultCnt=50&keyword=python")
+max_indeed_pages = extract_indeed_pages()
 
-worknet_soup = BeautifulSoup(worknet_result.text, "html.parser")
 
-pagination = worknet_soup.find("nav", {"class":"pagination"})
-
-pages = pagination.find_all('a')
-spans = []
-
-for page in pages:
-  spans.append(page)
-
-print(spans)
+print(max_indeed_pages)
